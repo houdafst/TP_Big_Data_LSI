@@ -1,0 +1,21 @@
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local Docker overrides
+docker-compose.override.yml
+compose.override.yaml
+
+# Logs
+*.log.*
+
+# Readmes
+*.md

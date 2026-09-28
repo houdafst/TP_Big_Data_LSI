@@ -1,0 +1,56 @@
+services:
+  namenode:
+    image: apache/hadoop:3.5.0
+    container_name: hadoop-namenode
+    hostname: namenode
+    user: root
+    ports:
+      - "9870:9870"
+      - "8020:8020"
+    volumes:
+      - namenode_data:/data/name
+      - ./config/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml:ro
+      - ./config/hdfs-site.xml:/opt/hadoop/etc/hadoop/hdfs-site.xml:ro
+      - ./scripts/start-namenode.sh:/scripts/start-namenode.sh:ro
+    command: ["/bin/bash", "/scripts/start-namenode.sh"]
+    networks: [hadoop]
+    restart: unless-stopped
+
+  datanode1:
+    image: apache/hadoop:3.5.0
+    container_name: hadoop-datanode1
+    hostname: datanode1
+    user: root
+    volumes:
+      - datanode1_data:/data/data
+      - ./config/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml:ro
+      - ./config/hdfs-site.xml:/opt/hadoop/etc/hadoop/hdfs-site.xml:ro
+      - ./scripts/start-datanode.sh:/scripts/start-datanode.sh:ro
+    command: ["/bin/bash", "/scripts/start-datanode.sh"]
+    depends_on: [namenode]
+    networks: [hadoop]
+    restart: unless-stopped
+
+  datanode2:
+    image: apache/hadoop:3.5.0
+    container_name: hadoop-datanode2
+    hostname: datanode2
+    user: root
+    volumes:
+      - datanode2_data:/data/data
+      - ./config/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml:ro
+      - ./config/hdfs-site.xml:/opt/hadoop/etc/hadoop/hdfs-site.xml:ro
+      - ./scripts/start-datanode.sh:/scripts/start-datanode.sh:ro
+    command: ["/bin/bash", "/scripts/start-datanode.sh"]
+    depends_on: [namenode]
+    networks: [hadoop]
+    restart: unless-stopped
+
+volumes:
+  namenode_data:
+  datanode1_data:
+  datanode2_data:
+
+networks:
+  hadoop:
+    driver: bridge
