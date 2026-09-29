@@ -35,7 +35,7 @@ Voir `tp1/TP1.pdf` pour le sujet complet.
 
 ```bash
 chmod +x install-docker.sh
-sudo ./install-docker.sh
+./install-docker.sh
 ```
 
 
