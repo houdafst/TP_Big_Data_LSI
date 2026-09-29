@@ -27,7 +27,7 @@ sudo apt install -y git
 
 ```bash
 git clone https://github.com/houdafst/TP_Big_Data_LSI.git
-cd TP_Big_Data_LSI/tp1
+cd TP_Big_Data_LSI
 ```
 Voir `tp1/TP1.pdf` pour le sujet complet.
 
