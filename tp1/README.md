@@ -173,7 +173,7 @@ Exécuter et analyser les commandes suivantes :
 ```bash
 mkdir -p ~/bigdata-tp/shared
 echo "Bonjour depuis la machine hôte" > ~/bigdata-tp/shared/message.txt
-docker run --rm -v ~/bigdata-tp/shared:/data ubuntu cat /data/message.txt
+sudo docker run --rm -v ~/bigdata-tp/shared:/data ubuntu cat /data/message.txt
 ```
 
 ## B.6. Docker Compose
